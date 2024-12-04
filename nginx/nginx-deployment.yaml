@@ -2,25 +2,25 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
-  namespace: {{ .Values.namespace }}
+  namespace: nginx
   labels:
-    id: c0904322       
+    id: c0904322       # replace with your actual college ID
     app: nginx
     env: dev
 spec:
-  replicas: {{ .Values.replica }}
+  replicas: 1
   selector:
     matchLabels:
       id: c0904322
   template:
     metadata:
       labels:
-        id: c0904322   
+        id: c0904322   # replace with your actual college ID
         app: nginx
         env: dev
     spec:
       containers:
         - name: nginx
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }} 
+          image: gauti12/nginx:v2  # replace with your Docker image name
           ports:
-            - containerPort: {{ .Values.service.port }}
+            - containerPort: 8080
